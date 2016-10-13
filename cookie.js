@@ -6,7 +6,15 @@ var auto_clickers = 0;
 var super_clickers = 0;
 var price_clicker = 10;
 var price_super = 100;
-var audio = new Audio('RVBCLICK.mp3');
+var click_sound = new Audio('RVBCLICK.wav');
+var bgm = new Audio('bensound-funkysuspense.mp3');
+
+bgm.volume = 0.5;
+
+bgm.addEventListener('ended', function(){
+    this.curretTime=0;
+    this.play();
+}, false);
 
 function auto_cookies(){
     total+=cps;
@@ -16,7 +24,7 @@ function auto_cookies(){
 
 function click_cookie(){
     total++;
-    audio.play();
+    click_sound.play();
     console.log(Math.floor(total));
     document.getElementById('total').innerHTML = Math.floor(total);
 }
@@ -96,4 +104,5 @@ function main(){
     document.getElementById('super_cost').innerHTML = price_super;
     window.setInterval(auto_cookies, 1000);
     window.setInterval(save_state, 10000);
+    bgm.play();
 }
