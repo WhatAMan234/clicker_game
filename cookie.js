@@ -7,6 +7,7 @@
     -Try adding upgrades
     -Achievements
     -Notification Messages
+    -Add mute button
 */
 "use strict";
 
