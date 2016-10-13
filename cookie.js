@@ -1,3 +1,13 @@
+/* THINGS TO DO
+    -Add more stuff to buy
+    -Adjust price increase
+    -Make page pretty
+    -Add random event
+    -Display cps
+    -Try adding upgrades
+    -Achievements
+    -Notification Messages
+*/
 "use strict";
 
 var cps = 0;
@@ -74,6 +84,7 @@ function save_state(){
 
 function delete_state(){
     localStorage.removeItem('dickclickerstate');
+    location.reload();
 }
 
 function harambe_hit(){
