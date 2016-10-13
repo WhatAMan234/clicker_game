@@ -62,32 +62,14 @@ function save_state(){
 
 }
 
-function getCookie(cname) {
-/*
-    Not mine: Credit to w3schools.com/js/js_cookies.asp
-*/
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length,c.length);
-        }
-    }
-    return "";
-}
-
 function delete_state(){
     localStorage.removeItem('dickclickerstate');
 }
 
 function harambe_hit(){
-    document.getElementById("Harambe").src = "Harambe_hit.png";
+    document.getElementById("main_click").src = "button_hit.png";
     setTimeout(function(){
-        document.getElementById("Harambe").src = "Harambe.jpg";
+        document.getElementById("main_click").src = "button.png";
     }, 200);
 }
 
