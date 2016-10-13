@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <title>Clicker game</title>
+  <script src="cookie.js"></script>
+</head>
+<body align="center" onload="main()">
+  <img onclick="click_cookie()" src="http://static.giantbomb.com/uploads/original/3/34658/968143-red_button_med_30.jpg"/>
+  <div style="float:left">
+    <p>total: <span id="total"></span></p>
+    <p>clickers: <span id="clickers"></span></p>
+    <p>super clickers: <span id="supers"></span></p>
+  </div>
+  <p><figure>
+      <img style = "height:50px" onclick="buy_clicker()" src="http://www.freeiconspng.com/uploads/white-mouse-cursor-arrow-by-qubodup-11.png"/>
+      <figcaption>Cost = <span id='auto_cost'></span></figcaption>
+    </figure>
+    <figure>
+      <img style = "height:50px" onclick="buy_super()" src="https://s-media-cache-ak0.pinimg.com/564x/9e/a6/08/9ea60818e520976728499284ac4414d5.jpg"/>
+      <figcaption>Cost = <span id='super_cost'></span></figcaption>
+    </figure>
+  </p>
+
+</body>
