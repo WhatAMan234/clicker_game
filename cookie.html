@@ -4,22 +4,22 @@
   <title>Clicker game</title>
   <script src="cookie.js"></script>
 </head>
-<body align="center" onload="main()">
+<body align="center" onload="main()" style="background-color:#079952">
   <p>
     <div>
-      <p>total: <span id="total"></span></p>
-      <p>clickers: <span id="clickers"></span></p>
-      <p>super clickers: <span id="supers"></span></p>
+      <p style="color:white">total: <span id="total"></span></p>
+      <p style="color:white">clickers: <span id="clickers"></span></p>
+      <p style="color:white">super clickers: <span id="supers"></span></p>
     </div>
   </p>
-  <img style = "height:300px" onclick="click_cookie()" src="http://i2.mirror.co.uk/incoming/article8075004.ece/ALTERNATES/s615b/Harambe.jpg"/>
+  <img style = "height:300px" onclick="click_cookie();harambe_hit()"  src="Harambe.jpg" id="Harambe"/>
   <p><figure>
       <img style = "height:50px" onclick="buy_clicker()" src="http://www.freeiconspng.com/uploads/white-mouse-cursor-arrow-by-qubodup-11.png"/>
-      <figcaption>Cost = <span id='auto_cost'></span></figcaption>
+      <figcaption style="color:white">Cost = <span id='auto_cost'></span></figcaption>
     </figure>
     <figure>
       <img style = "height:50px" onclick="buy_super()" src="https://s-media-cache-ak0.pinimg.com/564x/9e/a6/08/9ea60818e520976728499284ac4414d5.jpg"/>
-      <figcaption>Cost = <span id='super_cost'></span></figcaption>
+      <figcaption style="color:white">Cost = <span id='super_cost'></span></figcaption>
     </figure>
   </p>
     <img style="height:50px" onclick="save_state()" src="http://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png"/>

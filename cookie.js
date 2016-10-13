@@ -15,7 +15,7 @@ function auto_cookies(){
 
 function click_cookie(){
     total++;
-    console.log(total);
+    console.log(Math.floor(total));
     document.getElementById('total').innerHTML = Math.floor(total);
 }
 
@@ -56,7 +56,7 @@ function save_state(){
      "super_clickers":super_clickers, "price_super":price_super,
      "price_clicker":price_clicker, "cps":cps};
     console.log(cps);
-    localStorage.setItem('myStorage', JSON.stringify(state));
+    localStorage.setItem('dickclickerstate', JSON.stringify(state));
     
     console.log('state saved')
 
@@ -75,17 +75,28 @@ function getCookie(cname) {
         }
         if (c.indexOf(name) == 0) {
             return c.substring(name.length,c.length);
-        }s
+        }
     }
     return "";
 }
 
 function delete_state(){
-    localStorage.removeItem('myStorage');
+    localStorage.removeItem('dickclickerstate');
+}
+
+function harambe_hit(){
+    document.getElementById("Harambe").src = "Harambe_hit.png";
+    setTimeout(function(){
+        document.getElementById("Harambe").src = "Harambe.jpg";
+    }, 200);
+}
+
+function sleep(){
+    return;
 }
 
 function main(){
-    var state = JSON.parse(localStorage.getItem('myStorage'));
+    var state = JSON.parse(localStorage.getItem('dickclickerstate'));
     if(state){
         total = state["total"];
         super_clickers = state["super_clickers"];
@@ -100,5 +111,5 @@ function main(){
     document.getElementById('auto_cost').innerHTML = price_clicker;
     document.getElementById('super_cost').innerHTML = price_super;
     window.setInterval(auto_cookies, 1000);
-    window.setInterval(save_state, 10000)
+    window.setInterval(save_state, 10000);
 }
