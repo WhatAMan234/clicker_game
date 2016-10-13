@@ -100,4 +100,5 @@ function main(){
     document.getElementById('auto_cost').innerHTML = price_clicker;
     document.getElementById('super_cost').innerHTML = price_super;
     window.setInterval(auto_cookies, 1000);
+    window.setInterval(save_state, 10000)
 }
