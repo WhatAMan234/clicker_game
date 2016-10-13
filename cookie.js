@@ -6,6 +6,7 @@ var auto_clickers = 0;
 var super_clickers = 0;
 var price_clicker = 10;
 var price_super = 100;
+var audio = new Audio('RVBCLICK.mp3');
 
 function auto_cookies(){
     total+=cps;
@@ -15,6 +16,7 @@ function auto_cookies(){
 
 function click_cookie(){
     total++;
+    audio.play();
     console.log(Math.floor(total));
     document.getElementById('total').innerHTML = Math.floor(total);
 }
