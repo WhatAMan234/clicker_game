@@ -5,12 +5,14 @@
   <script src="cookie.js"></script>
 </head>
 <body align="center" onload="main()">
+  <p>
+    <div style="float:left">
+      <p>total: <span id="total"></span></p>
+      <p>clickers: <span id="clickers"></span></p>
+      <p>super clickers: <span id="supers"></span></p>
+    </div>
+  </p>
   <img onclick="click_cookie()" src="http://static.giantbomb.com/uploads/original/3/34658/968143-red_button_med_30.jpg"/>
-  <div style="float:left">
-    <p>total: <span id="total"></span></p>
-    <p>clickers: <span id="clickers"></span></p>
-    <p>super clickers: <span id="supers"></span></p>
-  </div>
   <p><figure>
       <img style = "height:50px" onclick="buy_clicker()" src="http://www.freeiconspng.com/uploads/white-mouse-cursor-arrow-by-qubodup-11.png"/>
       <figcaption>Cost = <span id='auto_cost'></span></figcaption>
@@ -20,5 +22,8 @@
       <figcaption>Cost = <span id='super_cost'></span></figcaption>
     </figure>
   </p>
+    <img style="height:50px" onclick="save_state()" src="http://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png"/>
+    <img style="height:50px" onclick="delete_state()" src="http://www.freeiconspng.com/uploads/red-delete-button-png-1.png"/>
+  <p>
 
 </body>

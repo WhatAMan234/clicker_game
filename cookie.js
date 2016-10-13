@@ -23,9 +23,10 @@ function buy_clicker(){
     if(total >= price_clicker){
         auto_clickers++;
         total-=price_clicker;
-        console.log('Bought one');
         console.log(total);
         cps+=.1;
+        price_clicker = Math.floor(price_clicker*1.2);
+        document.getElementById('auto_cost').innerHTML = price_clicker;
         document.getElementById('clickers').innerHTML = auto_clickers;
         document.getElementById('total').innerHTML = Math.floor(total);
     }
@@ -38,9 +39,10 @@ function buy_super(){
     if(total >= price_super){
         super_clickers++;
         total-=price_super;
-        console.log('Bought one');
         console.log(total);
-        cps+=10;
+        cps+=5;
+        price_super = Math.floor(price_super*1.2);
+        document.getElementById('super_cost').innerHTML = price_super;
         document.getElementById('supers').innerHTML = super_clickers;
         document.getElementById('total').innerHTML = Math.floor(total);
     }
@@ -49,7 +51,49 @@ function buy_super(){
     }
 }
 
+function save_state(){
+    let state = {"total":total, "auto_clickers":auto_clickers,
+     "super_clickers":super_clickers, "price_super":price_super,
+     "price_clicker":price_clicker, "cps":cps};
+    console.log(cps);
+    localStorage.setItem('myStorage', JSON.stringify(state));
+    
+    console.log('state saved')
+
+}
+
+function getCookie(cname) {
+/*
+    Not mine: Credit to w3schools.com/js/js_cookies.asp
+*/
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }s
+    }
+    return "";
+}
+
+function delete_state(){
+    localStorage.removeItem('myStorage');
+}
+
 function main(){
+    var state = JSON.parse(localStorage.getItem('myStorage'));
+    if(state){
+        total = state["total"];
+        super_clickers = state["super_clickers"];
+        price_super = state["price_super"];
+        auto_clickers = state["auto_clickers"];
+        price_clicker = state["price_clicker"];
+        cps = state["cps"];
+    }
     document.getElementById('total').innerHTML = Math.floor(total);
     document.getElementById('clickers').innerHTML = auto_clickers;
     document.getElementById('supers').innerHTML = super_clickers;
