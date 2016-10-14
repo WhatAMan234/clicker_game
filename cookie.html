@@ -30,25 +30,29 @@
   </div>
   <div>
     <div style="display: inline-block; padding-right: 10px">
-      <img style="height: 50px" onclick="upgrade_clicker()" src="mega-mouse.png" id="clicker_upgrade"/>
-      <p style="color: white" id="clicker_upgrade_cost_disp">Cost = <span id='upgrade_clicker_cost'></span></p>
+      <img style="height: 50px; display: none" onclick="upgrade_clicker()" src="mega-mouse.png" id="clicker_upgrade"/>
+      <p style="color: white; visibility: hidden" id="clicker_upgrade_cost_disp">Cost = <span id='upgrade_clicker_cost'></span></p>
     </div>
   </div>
   <div>
-    <div style="display: inline-block; padding-right: 10px">
-      <img style="height:50px" onclick="save_state()" src="http://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png"/>
+    <div style="display: inline-block; padding-right: 10px; padding-top: 10px">
+      <img style="height:50px" onclick="save_state()" onmouseover="grow(id)" onmouseout="shrink(id)" 
+        id="save" src="http://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png"/>
       <p style="color: white">Save Game</p>
     </div>
     <div style="display: inline-block; padding-right: 10px">
-      <img style="height:50px" onclick="delete_state()" src="http://www.freeiconspng.com/uploads/red-delete-button-png-1.png"/>
+      <img style="height:50px" onclick="delete_state()" onmouseover="grow(id)" onmouseout="shrink(id)" 
+        id="del" src="http://www.freeiconspng.com/uploads/red-delete-button-png-1.png"/>
       <p style="color: white">Delete Save</p>
     </div>
     <div style="display: inline-block; padding-right: 10px">
-      <img style="height:50px" onclick="mute_bgm()" src="unmuted.png" id="mute_music"/>
+      <img style="height:50px" onclick="mute_bgm()" onmouseover="grow(id)" onmouseout="shrink(id)" 
+        src="unmuted.png" id="mute_music"/>
       <p style="color: white">Toggle BGM</p>
     </div>
     <div style="display: inline-block; padding-right: 10px">
-      <img style="height:50px" onclick="mute_clicks()" src="unmuted.png" id="mute_sfx"/>
+      <img style="height:50px" onclick="mute_clicks()" onmouseover="grow(id)" onmouseout="shrink(id)" 
+        src="unmuted.png" id="mute_sfx"/>
       <p style="color: white">Toggle SFX</p>
     </div>
   </div>

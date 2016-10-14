@@ -1,9 +1,9 @@
 /* THINGS TO DO
     -Make page pretty
     -Add random event
-    -Try adding upgrades
     -Achievements
     -Notification Messages
+    -Fix growing and shrinking buttons
 */
 "use strict";
 
@@ -167,6 +167,22 @@ function mute_clicks(){
     }
 }
 
+function grow(pic_id){
+    document.getElementById(pic_id).style.paddingRight="-5px";
+    document.getElementById(pic_id).style.paddingBottom="-5px";
+    document.getElementById(pic_id).style.paddingTop="-5px";
+    document.getElementById(pic_id).style.paddingLeft="-5px";
+    document.getElementById(pic_id).style.height = "55px";
+}
+
+function shrink(pic_id){
+    document.getElementById(pic_id).style.paddingRight="10px";
+    document.getElementById(pic_id).style.paddingBottom="0px";
+    document.getElementById(pic_id).style.paddingTop="0px";
+    document.getElementById(pic_id).style.paddingLeft="10px";
+    document.getElementById(pic_id).style.height = "50px";    
+}
+
 function truncate (num, dec_places) {
     var numstr = num.toString(),
         location_of_decimal = numstr.indexOf('.'),
@@ -203,10 +219,10 @@ function main(){
     document.getElementById('upgrade_clicker_cost').innerHTML = price_upgrade_clicker;
     window.setInterval(auto_cookies, 1000);
     window.setInterval(save_state, 10000);
-    if(upgraded_clicker){
-        document.getElementById("clicker_upgrade").style.display = "none";
-        document.getElementById('clicker_upgrade_cost_disp').style.visibility = "hidden";
-        document.getElementById('upgrade_clicker_cost').style.visibility = "hidden";
+    if(!upgraded_clicker){
+        document.getElementById("clicker_upgrade").style.display = "block";
+        document.getElementById("clicker_upgrade_cost_disp").style.visibility = "initial";
+        document.getElementById('upgrade_clicker_cost').style.visibility = "initial";
         clicker_mult*=3;
     }
     if(mute_music == true){
