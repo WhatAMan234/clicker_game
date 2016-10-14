@@ -13,17 +13,32 @@
     </div>
   </p>
   <img style = "height:300px" onclick="click_cookie();harambe_hit()"  src="button.png" id="main_click"/>
-  <p><figure>
+  <div>
+    <div style="display: inline-block; padding-right: 10px">
       <img style = "height:50px" onclick="buy_clicker()" src="http://www.freeiconspng.com/uploads/white-mouse-cursor-arrow-by-qubodup-11.png"/>
-      <figcaption style="color:white">Cost = <span id='auto_cost'></span></figcaption>
-    </figure>
-    <figure>
+      <p style="color: white">Cost = <span id='auto_cost'></span></p>
+    </div>
+    <div style="display: inline-block; padding-right: 10px"> 
       <img style = "height:50px" onclick="buy_super()" src="https://s-media-cache-ak0.pinimg.com/564x/9e/a6/08/9ea60818e520976728499284ac4414d5.jpg"/>
-      <figcaption style="color:white">Cost = <span id='super_cost'></span></figcaption>
-    </figure>
-  </p>
-    <img style="height:50px" onclick="save_state()" src="http://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png"/>
-    <img style="height:50px" onclick="delete_state()" src="http://www.freeiconspng.com/uploads/red-delete-button-png-1.png"/>
-  <p>
-
+      <p style="color: white">Cost = <span id='super_cost'></span></p>
+    </div>
+  </div>
+  <div>
+    <div style="display: inline-block; padding-right: 10px">
+      <img style="height:50px" onclick="save_state()" src="http://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png"/>
+      <p style="color: white">Save Game</p>
+    </div>
+    <div style="display: inline-block; padding-right: 10px">
+      <img style="height:50px" onclick="delete_state()" src="http://www.freeiconspng.com/uploads/red-delete-button-png-1.png"/>
+      <p style="color: white">Delete Save</p>
+    </div>
+    <div style="display: inline-block; padding-right: 10px">
+      <img style="height:50px" onclick="mute_bgm()" src="unmuted.png" id="mute_music"/>
+      <p style="color: white">Toggle BGM</p>
+    </div>
+    <div style="display: inline-block; padding-right: 10px">
+      <img style="height:50px" onclick="mute_clicks()" src="unmuted.png" id="mute_sfx"/>
+      <p style="color: white">Toggle SFX</p>
+    </div>
+  </div>
 </body>

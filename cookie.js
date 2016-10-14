@@ -7,7 +7,7 @@
     -Try adding upgrades
     -Achievements
     -Notification Messages
-    -Add mute button
+    -Add mute button for clicks
 */
 "use strict";
 
@@ -19,8 +19,10 @@ var price_clicker = 10;
 var price_super = 100;
 var click_sound = new Audio('RVBCLICK.wav');
 var bgm = new Audio('bensound-funkysuspense.mp3');
+var mute_music = false;
+var muted_clicks = false;
 
-bgm.volume = 0.5;
+bgm.volume = 0.25;
 
 bgm.addEventListener('ended', function(){
     this.curretTime=0;
@@ -75,16 +77,17 @@ function buy_super(){
 function save_state(){
     let state = {"total":total, "auto_clickers":auto_clickers,
      "super_clickers":super_clickers, "price_super":price_super,
-     "price_clicker":price_clicker, "cps":cps};
+     "price_clicker":price_clicker, "cps":cps, "mute_music":mute_music,
+     "muted_clicks":muted_clicks};
     console.log(cps);
-    localStorage.setItem('dickclickerstate', JSON.stringify(state));
+    localStorage.setItem('clickerstate', JSON.stringify(state));
     
     console.log('state saved')
 
 }
 
 function delete_state(){
-    localStorage.removeItem('dickclickerstate');
+    localStorage.removeItem('clickerstate');
     location.reload();
 }
 
@@ -95,12 +98,38 @@ function harambe_hit(){
     }, 200);
 }
 
-function sleep(){
-    return;
+function mute_bgm(){
+    if(mute_music){
+        bgm.volume = .25;
+        mute_music = false;
+        document.getElementById("mute_music").src = "unmuted.png";
+        save_state();
+    }
+    else{
+        bgm.volume = 0;
+        mute_music = true;
+        document.getElementById("mute_music").src = "muted.png";
+        save_state();
+    }
+}
+
+function mute_clicks(){
+    if(muted_clicks){
+        click_sound.volume = 1;
+        muted_clicks = false;
+        document.getElementById("mute_sfx").src = "unmuted.png";
+        save_state();
+    }
+    else{
+        click_sound.volume = 0;
+        muted_clicks = true;
+        document.getElementById("mute_sfx").src = "muted.png";
+        save_state();
+    }
 }
 
 function main(){
-    var state = JSON.parse(localStorage.getItem('dickclickerstate'));
+    var state = JSON.parse(localStorage.getItem('clickerstate'));
     if(state){
         total = state["total"];
         super_clickers = state["super_clickers"];
@@ -108,6 +137,8 @@ function main(){
         auto_clickers = state["auto_clickers"];
         price_clicker = state["price_clicker"];
         cps = state["cps"];
+        mute_music = state["mute_music"];
+        muted_clicks = state["muted_clicks"];
     }
     document.getElementById('total').innerHTML = Math.floor(total);
     document.getElementById('clickers').innerHTML = auto_clickers;
@@ -116,5 +147,13 @@ function main(){
     document.getElementById('super_cost').innerHTML = price_super;
     window.setInterval(auto_cookies, 1000);
     window.setInterval(save_state, 10000);
+    if(mute_music == true){
+        bgm.volume = 0;
+        document.getElementById("mute_music").src = "muted.png";
+    }
+    if(muted_clicks == true){
+        click_sound.volume = 0;
+        document.getElementById("mute_sfx").src = "muted.png";
+    }
     bgm.play();
 }
