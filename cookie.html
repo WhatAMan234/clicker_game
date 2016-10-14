@@ -7,20 +7,25 @@
 <body align="center" onload="main()" style="background-color:#079952">
   <p>
     <div>
-      <p style="color:white">total: <span id="total"></span></p>
-      <p style="color:white">clickers: <span id="clickers"></span></p>
-      <p style="color:white">super clickers: <span id="supers"></span></p>
+      <p style="color:white">Total: <span id="total" style="padding-right: 10px"></span>CPS: <span id="cps"></span></p>
+      <p style="color:white">Auto Clickers: <span id="clickers"></span></p>
+      <p style="color:white">Super Clickers: <span id="supers"></span></p>
+      <p style="color:white">Mega Clickers: <span id="megas"></span></p>
     </div>
   </p>
   <img style = "height:300px" onclick="click_cookie();harambe_hit()"  src="button.png" id="main_click"/>
   <div>
     <div style="display: inline-block; padding-right: 10px">
-      <img style = "height:50px" onclick="buy_clicker()" src="http://www.freeiconspng.com/uploads/white-mouse-cursor-arrow-by-qubodup-11.png"/>
+      <img style = "height:50px" onclick="buy_clicker()" src="cursor.png"/>
       <p style="color: white">Cost = <span id='auto_cost'></span></p>
     </div>
     <div style="display: inline-block; padding-right: 10px"> 
-      <img style = "height:50px" onclick="buy_super()" src="https://s-media-cache-ak0.pinimg.com/564x/9e/a6/08/9ea60818e520976728499284ac4414d5.jpg"/>
+      <img style = "height:50px" onclick="buy_super()" src="mighty-mouse.png"/>
       <p style="color: white">Cost = <span id='super_cost'></span></p>
+    </div>
+    <div style="display: inline-block; padding-right: 10px">
+      <img style="height: 50px" onclick="buy_mega()" src="mega-mouse.png">
+      <p style="color: white">Cost = <span id='mega_cost'></span></p>
     </div>
   </div>
   <div>

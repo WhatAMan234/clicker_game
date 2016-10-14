@@ -1,13 +1,10 @@
 /* THINGS TO DO
-    -Add more stuff to buy
-    -Adjust price increase
     -Make page pretty
     -Add random event
-    -Display cps
     -Try adding upgrades
     -Achievements
     -Notification Messages
-    -Add mute button for clicks
+    -Fix CPS display
 */
 "use strict";
 
@@ -15,14 +12,17 @@ var cps = 0;
 var total = 0;
 var auto_clickers = 0;
 var super_clickers = 0;
+var mega_clickers = 0;
 var price_clicker = 10;
-var price_super = 100;
+var price_super = 50;
+var price_mega = 150;
 var click_sound = new Audio('RVBCLICK.wav');
 var bgm = new Audio('bensound-funkysuspense.mp3');
 var mute_music = false;
 var muted_clicks = false;
 
 bgm.volume = 0.25;
+click_sound.volume = 0.5;
 
 bgm.addEventListener('ended', function(){
     this.curretTime=0;
@@ -47,11 +47,12 @@ function buy_clicker(){
         auto_clickers++;
         total-=price_clicker;
         console.log(total);
-        cps+=.1;
+        cps+=0.1;
         price_clicker = Math.floor(price_clicker*1.2);
         document.getElementById('auto_cost').innerHTML = price_clicker;
         document.getElementById('clickers').innerHTML = auto_clickers;
         document.getElementById('total').innerHTML = Math.floor(total);
+        document.getElementById('cps').innerHTML = truncate(cps,1);
     }
     else{
         console.log('Not enough cookies!');
@@ -63,11 +64,29 @@ function buy_super(){
         super_clickers++;
         total-=price_super;
         console.log(total);
-        cps+=5;
+        cps+=0.5;
         price_super = Math.floor(price_super*1.2);
         document.getElementById('super_cost').innerHTML = price_super;
         document.getElementById('supers').innerHTML = super_clickers;
         document.getElementById('total').innerHTML = Math.floor(total);
+        document.getElementById('cps').innerHTML = truncate(cps,1);
+    }
+    else{
+        console.log('Not enough cookies!');
+    }
+}
+
+function buy_mega(){
+    if(total >= price_mega){
+        mega_clickers++;
+        total-=price_mega;
+        console.log(total);
+        cps+=2;
+        price_mega = Math.floor(price_mega*1.2);
+        document.getElementById('mega_cost').innerHTML = price_mega;
+        document.getElementById('megas').innerHTML = mega_clickers;
+        document.getElementById('total').innerHTML = Math.floor(total);
+        document.getElementById('cps').innerHTML = truncate(cps,1);
     }
     else{
         console.log('Not enough cookies!');
@@ -76,8 +95,9 @@ function buy_super(){
 
 function save_state(){
     let state = {"total":total, "auto_clickers":auto_clickers,
-     "super_clickers":super_clickers, "price_super":price_super,
-     "price_clicker":price_clicker, "cps":cps, "mute_music":mute_music,
+     "super_clickers":super_clickers, "mega_clickers":mega_clickers,
+     "price_super":price_super, "price_clicker":price_clicker, 
+     "price_mega":price_mega, "cps":cps, "mute_music":mute_music, 
      "muted_clicks":muted_clicks};
     console.log(cps);
     localStorage.setItem('clickerstate', JSON.stringify(state));
@@ -115,7 +135,7 @@ function mute_bgm(){
 
 function mute_clicks(){
     if(muted_clicks){
-        click_sound.volume = 1;
+        click_sound.volume = 0.5;
         muted_clicks = false;
         document.getElementById("mute_sfx").src = "unmuted.png";
         save_state();
@@ -128,6 +148,16 @@ function mute_clicks(){
     }
 }
 
+function truncate (num, digits) {
+    var numS = num.toString(),
+        decPos = numS.indexOf('.'),
+        substrLength = decPos == -1 ? numS.length : 1 + decPos + digits,
+        trimmedResult = numS.substr(0, substrLength),
+        finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
+
+    return parseFloat(finalResult);
+}
+
 function main(){
     var state = JSON.parse(localStorage.getItem('clickerstate'));
     if(state){
@@ -136,15 +166,20 @@ function main(){
         price_super = state["price_super"];
         auto_clickers = state["auto_clickers"];
         price_clicker = state["price_clicker"];
+        mega_clickers = state["mega_clickers"];
+        price_mega = state["price_mega"];
         cps = state["cps"];
         mute_music = state["mute_music"];
         muted_clicks = state["muted_clicks"];
     }
     document.getElementById('total').innerHTML = Math.floor(total);
+    document.getElementById('cps').innerHTML = truncate(cps,1);
     document.getElementById('clickers').innerHTML = auto_clickers;
     document.getElementById('supers').innerHTML = super_clickers;
+    document.getElementById('megas').innerHTML = mega_clickers;
     document.getElementById('auto_cost').innerHTML = price_clicker;
     document.getElementById('super_cost').innerHTML = price_super;
+    document.getElementById('mega_cost').innerHTML = price_mega;
     window.setInterval(auto_cookies, 1000);
     window.setInterval(save_state, 10000);
     if(mute_music == true){
