@@ -16,6 +16,9 @@ var mega_clickers = 0;
 var price_clicker = 10;
 var price_super = 50;
 var price_mega = 150;
+var clicker_mult = 0.1;
+var super_mult = 0.5;
+var mega_mult = 1;
 var click_sound = new Audio('RVBCLICK.wav');
 var bgm = new Audio('bensound-funkysuspense.mp3');
 var mute_music = false;
@@ -47,7 +50,7 @@ function buy_clicker(){
         auto_clickers++;
         total-=price_clicker;
         console.log(total);
-        cps+=0.1;
+        cps=(cps*100+clicker_mult*100)/100;
         price_clicker = Math.floor(price_clicker*1.2);
         document.getElementById('auto_cost').innerHTML = price_clicker;
         document.getElementById('clickers').innerHTML = auto_clickers;
@@ -64,7 +67,7 @@ function buy_super(){
         super_clickers++;
         total-=price_super;
         console.log(total);
-        cps+=0.5;
+        cps=(cps*100+super_mult*100)/100;
         price_super = Math.floor(price_super*1.2);
         document.getElementById('super_cost').innerHTML = price_super;
         document.getElementById('supers').innerHTML = super_clickers;
@@ -81,7 +84,7 @@ function buy_mega(){
         mega_clickers++;
         total-=price_mega;
         console.log(total);
-        cps+=2;
+        cps=(cps*100+mega_mult*100)/100;
         price_mega = Math.floor(price_mega*1.2);
         document.getElementById('mega_cost').innerHTML = price_mega;
         document.getElementById('megas').innerHTML = mega_clickers;
