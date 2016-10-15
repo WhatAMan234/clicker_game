@@ -124,7 +124,8 @@ function save_state(){
      "super_clickers":super_clickers, "mega_clickers":mega_clickers,
      "price_super":price_super, "price_clicker":price_clicker, 
      "price_mega":price_mega, "cps":cps, "mute_music":mute_music, 
-     "muted_clicks":muted_clicks, "upgraded_clicker":upgraded_clicker};
+     "muted_clicks":muted_clicks, "upgraded_clicker":upgraded_clicker, 
+     "clicker_mult":clicker_mult};
     console.log(cps);
     localStorage.setItem('clickerstate', JSON.stringify(state));
     
@@ -207,6 +208,7 @@ function main(){
         mute_music = state["mute_music"];
         muted_clicks = state["muted_clicks"];
         upgraded_clicker = state["upgraded_clicker"];
+        clicker_mult = state["clicker_mult"];
     }
     document.getElementById('total').innerHTML = Math.floor(total);
     document.getElementById('cps').innerHTML = truncate(cps,1);
@@ -223,7 +225,6 @@ function main(){
         document.getElementById("clicker_upgrade").style.display = "block";
         document.getElementById("clicker_upgrade_cost_disp").style.visibility = "initial";
         document.getElementById('upgrade_clicker_cost').style.visibility = "initial";
-        clicker_mult*=3;
     }
     if(mute_music == true){
         bgm.volume = 0;
