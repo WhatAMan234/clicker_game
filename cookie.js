@@ -19,7 +19,9 @@ var clicker_mult = 0.1;
 var super_mult = 0.5;
 var mega_mult = 1;
 var upgraded_clicker = false;
+var upgraded_super = false;
 var price_upgrade_clicker = 200;
+var price_upgrade_super = 400;
 var click_sound = new Audio('RVBCLICK.wav');
 var bgm = new Audio('bensound-funkysuspense.mp3');
 var mute_music = false;
@@ -119,13 +121,29 @@ function upgrade_clicker(){
     }
 }
 
+function upgrade_super(){
+    if(total >= price_upgrade_super){
+        upgraded_super = true;
+        cps = ((cps*100)+(200*super_mult*super_clickers))/100;
+        super_mult*=3;
+        document.getElementById('cps').innerHTML = truncate(cps,1);
+        document.getElementById('super_upgrade').style.display = "none";
+        document.getElementById('super_upgrade_cost_disp').style.visibility = "hidden";
+        document.getElementById('upgrade_super_cost').style.visibility = "hidden";
+    }
+    else{
+        console.log('Not enough clicks!');
+    }
+}
+
 function save_state(){
     let state = {"total":total, "auto_clickers":auto_clickers,
      "super_clickers":super_clickers, "mega_clickers":mega_clickers,
      "price_super":price_super, "price_clicker":price_clicker, 
      "price_mega":price_mega, "cps":cps, "mute_music":mute_music, 
      "muted_clicks":muted_clicks, "upgraded_clicker":upgraded_clicker, 
-     "clicker_mult":clicker_mult};
+     "clicker_mult":clicker_mult, "upgraded_super":upgraded_super,
+     "super_mult":super_mult};
     console.log(cps);
     localStorage.setItem('clickerstate', JSON.stringify(state));
     
@@ -209,6 +227,7 @@ function main(){
         muted_clicks = state["muted_clicks"];
         upgraded_clicker = state["upgraded_clicker"];
         clicker_mult = state["clicker_mult"];
+        upgrade_super = state["upgraded_super"];
     }
     document.getElementById('total').innerHTML = Math.floor(total);
     document.getElementById('cps').innerHTML = truncate(cps,1);
@@ -219,12 +238,18 @@ function main(){
     document.getElementById('super_cost').innerHTML = price_super;
     document.getElementById('mega_cost').innerHTML = price_mega;
     document.getElementById('upgrade_clicker_cost').innerHTML = price_upgrade_clicker;
+    document.getElementById('upgrade_super_cost').innerHTML = price_upgrade_super;
     window.setInterval(auto_cookies, 1000);
     window.setInterval(save_state, 10000);
     if(!upgraded_clicker){
         document.getElementById("clicker_upgrade").style.display = "block";
         document.getElementById("clicker_upgrade_cost_disp").style.visibility = "initial";
         document.getElementById('upgrade_clicker_cost').style.visibility = "initial";
+    }
+    if(!upgraded_super){
+        document.getElementById("super_upgrade").style.display = "block";
+        document.getElementById("super_upgrade_cost_disp").style.visibility = "initial";
+        document.getElementById('upgrade_super_cost').style.visibility = "initial";
     }
     if(mute_music == true){
         bgm.volume = 0;
